@@ -4,14 +4,16 @@ using KitapEvi_DataAccess.DATA;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KitapEvi_DataAccess.Migrations
 {
     [DbContext(typeof(KitapEviContext))]
-    partial class KitapEviContextModelSnapshot : ModelSnapshot
+    [Migration("20220211083504_eklenullablekategori-detayid")]
+    partial class eklenullablekategoridetayid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

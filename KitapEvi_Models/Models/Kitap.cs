@@ -22,12 +22,14 @@ namespace KitapEvi_Models.Models
         public double indirimliFiyat { get; set; }
 
         [ForeignKey("Kategori")]
-        public int KategoriID { get; set; }
+        public int? KategoriID { get; set; }
         public Kategori Kategori { get; set; }
 
        [ForeignKey("Yayinevi")]
         public int YayinEviID { get; set; }
         public Yayinevi Yayinevi { get; set; }
+        public int? kitapDetayId { get; set; }
+        public KitapDetay KitapDetay { get; set; }
         public ICollection<KitapYazarlar> KitapYazarlar { get; set; }
     }
 }
