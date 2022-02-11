@@ -67,8 +67,6 @@ namespace KitapEvi.Controllers
                 _db.Kitaplar.Update(obj.Kitap);
             }
             _db.SaveChanges();
-
-
             return RedirectToAction("Index");
         }
 
@@ -81,14 +79,41 @@ namespace KitapEvi.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Detay(int id)
+        public IActionResult Detay(int? id)
         {
-            KitapDetay obj = new KitapDetay();
-            if (obj==null)
+            KitapVM obj = new KitapVM();
+            if (id==null)
             {
+                return View(obj);
             }
-
-            return View();
+            obj.Kitap = _db.Kitaplar.FirstOrDefault(x => x.KitapID == id);
+            obj.Kitap.KitapDetay =_db.KitapDetaylar.FirstOrDefault(x=>x.KitapID == id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Detay(KitapVM obj)
+        {
+            if (obj.Kitap.KitapDetay.KitapDetayID == 0)
+            {
+                var kitapdb = _db.Kitaplar.FirstOrDefault(x => x.KitapID == obj.Kitap.KitapID);
+                obj.Kitap.KitapDetay.KitapID = kitapdb.KitapID;
+                _db.KitapDetaylar.Add(obj.Kitap.KitapDetay);
+                kitapdb.kitapDetayId = obj.Kitap.KitapDetay.KitapDetayID;
+                _db.SaveChanges();
+
+            }
+            else
+            {
+                _db.KitapDetaylar.Update(obj.Kitap.KitapDetay);
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }
