@@ -62,6 +62,19 @@
 
                  <div class="form-group row">
                      <div class="col-4">
+                         <label asp-for="Kitap.KategoriID"></label>
+                     </div>
+                     <div class="col-8">
+                         @Html.DropDownListFor(x => x.Kitap.KategoriID, Model.KategoriListe, "**Kategori Seçiniz", new { @class = "form-control" })
+                         <span asp-validation-for="Kitap.KategoriID" class="text-danger"></span>
+
+
+
+                     </div>
+                 </div>
+
+                 <div class="form-group row">
+                     <div class="col-4">
                          @if (Model.Kitap == null)
                          {
                              <button type="submit" class="btn btn-primary form-control">Oluştur</button>

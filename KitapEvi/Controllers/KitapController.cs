@@ -29,7 +29,9 @@ namespace KitapEvi.Controllers
             //}
             //1.Yol Son
             //2.Yol
+
             List<Kitap> kList = _db.Kitaplar.Include(x =>x.Yayinevi).ToList();
+            kList = _db.Kitaplar.Include(x => x.Kategori).ToList();
             //iligili alanlara innerjoin yaparak  getirir
 
             return View(kList);
@@ -42,6 +44,11 @@ namespace KitapEvi.Controllers
             {
                 Text = x.YayinEviAdi,
                 Value = x.YayinEviID.ToString()
+            });
+            obj.KategoriListe = _db.Kategoriler.Select(x => new SelectListItem
+            {
+                Text = x.KategoriAdi,
+                Value = x.KategoriID.ToString()
             });
             if (id==null)
             {

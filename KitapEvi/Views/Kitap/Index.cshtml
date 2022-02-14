@@ -19,6 +19,8 @@
                     <tr class="table-secondary">
                         <th>Kitap Adı</th>
                         <th>Yayın Evi</th>
+                        <th>Kategori</th>
+
                         <th>Fiyat</th>
 
 
@@ -29,16 +31,29 @@
                 <tr>
                     <td>@item.KitapAdi</td>
                     <td>@item.Yayinevi.YayinEviAdi</td>
-                    <td>@item.Fiyat</td>
-
                     <td>
-                        <a class="btn btn-primary text-white" asp-action="Update_Insert" asp-route-id="@item.KitapID">Düzenle</a>
-                        <a class="btn btn-danger text-white" asp-action="Detay" asp-route-id="@item.KitapID">Detaylar</a>
-                        <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.KitapID">Sil</a>
+                        @if (item.Kategori != null)
+                        {
+                            @item.Kategori.KategoriAdi
 
 
+                        }
+                        else
+                        {
+                            @Html.Raw("-");
+                        }
                     </td>
-                </tr>
+
+                        <td>@item.Fiyat</td>
+
+                        <td>
+                            <a class="btn btn-primary text-white" asp-action="Update_Insert" asp-route-id="@item.KitapID">Düzenle</a>
+                            <a class="btn btn-danger text-white" asp-action="Detay" asp-route-id="@item.KitapID">Detaylar</a>
+                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.KitapID">Sil</a>
+
+
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

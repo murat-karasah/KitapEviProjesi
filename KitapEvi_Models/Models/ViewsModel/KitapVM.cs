@@ -10,6 +10,8 @@ namespace KitapEvi_Models.Models.ViewsModel
    public class KitapVM
     {
         public Kitap Kitap { get; set; }
+        public IEnumerable<SelectListItem> KategoriListe { get; set; }
+
         public IEnumerable<SelectListItem> YayinEviListesi { get; set; }
     }
 }
